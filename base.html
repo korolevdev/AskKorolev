@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>AskKorolev</title>   
+    <!-- Bootstrap -->
+    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/my.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <!--- You code here -->
+    <nav class="navbar navbar-inverse " role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Ask Korolev</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <ul style="margin: 5px" class="nav navbar-right">
+            <a class="nav" href="#">Develiark <a href="#" class="navbar-link">log out</a> </a>
+          </ul>
+          <ul class="nav navbar-right">
+            <div style="margin: 7px">
+                <img src="static/default_ava.jpg" width="36" height="36">
+            </div>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+          <div class="row-offcanvas">
+            <div align="right">
+              <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success">Ask!</button>
+            </div>
+          </div>
+
+
+          
+        </div>
+
+        <div class="col-xs-6 col-sm-3" id="sidebar">
+          <div class="">
+            <div class="input-group">
+              <input type="text" class="form-control">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                  <span class="glyphicon glyphicon-search"></span>
+                </button>
+              </span>
+            </div><!-- /input-group -->
+          </div><!-- /.col-lg-6 -->
+          <br>
+          <div class="tags_block jumbotron">
+            <a href="#" style="color: peru; font-size: 21px;">Test </a>
+            <a href="#" style="color: cadetblue; font-size: 18px;">Mail.ru </a>
+            <a href="#" style="color: black; font-size: 23px;">Ruby </a>
+            <a href="#" style="color: brown; font-size: 25px;">Computers </a>
+            <a href="#" style="color: cadetblue; font-size: 18px;">Web </a>
+            <a href="#" style="color: indianred; font-size: 29px;">Android </a>
+            <a href="#" style="color: slateblue; font-size: 20px;">Python </a>
+            <a href="#" style="color: seagreen; font-size: 17px;">C++ </a>
+            <a href="#" style="color: orange; font-size: 23px;">Programming </a>
+          </div>
+          <div>
+            <h2 style="color: brown; ">Best members</h2>
+            <a href="#" style="font-size: 18px;">Develiark</a><br>
+            <a href="#" style="font-size: 18px;">metalray33</a><br>
+            <a href="#" style="font-size: 18px;">Unknown</a><br>
+            <a href="#" style="font-size: 18px;">Korolev Kirill</a><br>
+            <a href="#" style="font-size: 18px;">Traisi</a><br>
+            <a href="#" style="font-size: 18px;">Kitaro</a><br>
+          </div>
+        </div><!--/.sidebar-offcanvas-->
+      </div><!--/row-->
+    </div><!--/.container-->
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+
+</html>
