@@ -5,7 +5,7 @@ CONFIG = {
     'user': 'www-data',
     'group': 'www-data',
     'args': (
-        '--bind=127.0.0.1:8082',
+        '--bind=127.0.0.1:8000',
         '--workers=4',
         '--timeout=30',
         'ask_korolev.wsgi:application',

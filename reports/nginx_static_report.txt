@@ -1,0 +1,45 @@
+ab -c 10 -n 10000 http://localhost/index.html > nginx_static_report.txt
+
+
+This is ApacheBench, Version 2.3 <$Revision: 1528965 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+
+
+Server Software:        nginx/1.4.6
+Server Hostname:        localhost
+Server Port:            80
+
+Document Path:          /index.html
+Document Length:        13064 bytes
+
+Concurrency Level:      10
+Time taken for tests:   0.491 seconds
+Complete requests:      10000
+Failed requests:        0
+Total transferred:      134490000 bytes
+HTML transferred:       130640000 bytes
+Requests per second:    20362.99 [#/sec] (mean)
+Time per request:       0.491 [ms] (mean)
+Time per request:       0.049 [ms] (mean, across all concurrent requests)
+Transfer rate:          267443.22 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.1      0       1
+Processing:     0    0   0.1      0       2
+Waiting:        0    0   0.1      0       2
+Total:          0    0   0.2      0       3
+
+Percentage of the requests served within a certain time (ms)
+  50%      0
+  66%      0
+  75%      0
+  80%      0
+  90%      1
+  95%      1
+  98%      1
+  99%      1
+ 100%      3 (longest request)

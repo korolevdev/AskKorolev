@@ -1,0 +1,44 @@
+ab -c 10 -n 10000 http://localhost:8081/ > hello_wsgi_report.txt
+
+This is ApacheBench, Version 2.3 <$Revision: 1528965 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+
+
+Server Software:        gunicorn/17.5
+Server Hostname:        localhost
+Server Port:            8081
+
+Document Path:          /
+Document Length:        111 bytes
+
+Concurrency Level:      10
+Time taken for tests:   1.902 seconds
+Complete requests:      10000
+Failed requests:        0
+Total transferred:      2550000 bytes
+HTML transferred:       1110000 bytes
+Requests per second:    5258.12 [#/sec] (mean)
+Time per request:       1.902 [ms] (mean)
+Time per request:       0.190 [ms] (mean, across all concurrent requests)
+Transfer rate:          1309.39 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.1      0       2
+Processing:     0    2   0.5      2       8
+Waiting:        0    2   0.4      2       8
+Total:          1    2   0.4      2       8
+
+Percentage of the requests served within a certain time (ms)
+  50%      2
+  66%      2
+  75%      2
+  80%      2
+  90%      2
+  95%      3
+  98%      3
+  99%      4
+ 100%      8 (longest request)
