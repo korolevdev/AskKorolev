@@ -197,7 +197,7 @@ The problem can be solved either by using an earlier gcovr version (I tried 2.4 
           <textarea class="form-control" rows="3" placeholder="Your answer..." style="margin-top: 10px"></textarea>
           <br>
           <div align="right">
-            <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-warning">Post answer</button>
+            <button type="button" class="btn btn-warning">Post answer</button>
           </div>
           <br>
         </div>
@@ -239,6 +239,23 @@ The problem can be solved either by using an earlier gcovr version (I tried 2.4 
     </div><!--/.container-->
 
 
+<script type="text/javascript">
+  $('#myForm').on('submit', function(e) {
+    var firstName = $('#firstname');
+
+    // Check if there is an entered value
+    if(!firstName.val()) {
+      // Add errors highlight
+      firstName.closest('.form-group').removeClass('has-success').addClass('has-error');
+
+      // Stop submission of the form
+      e.preventDefault();
+    } else {
+      // Remove the errors highlight
+      firstName.closest('.form-group').removeClass('has-error').addClass('has-success');
+    }
+  });
+</script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
