@@ -1,0 +1,20 @@
+{%extends 'index.html'%}
+{% load staticfiles %}
+{%block likes%}
+105
+{%endblock%}
+
+
+{% block title %}<title>AskKorolev - Hot!</title>{% endblock %}
+
+{%block tabs%}
+<ul class="nav nav-pills col-xs-11 col-sm-11">
+  <li ><a href="{%url '/' %}">New</a></li>
+  <li class="active" style="padding-left:3px"><a href="{%url 'hot' %}">Popular</a></li>
+</ul>
+{%endblock%}
+
+{%block cont_title%}
+<h2>Hot questions</h2>
+{%endblock%}
+

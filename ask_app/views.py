@@ -5,8 +5,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response
 
-# Create your views here.
-
 @csrf_exempt
 def get_post_params(request):
     result = ['<p>Django!</p>']
@@ -32,12 +30,11 @@ def get_post_params(request):
 questions = []
 for i in xrange(30):
     questions.append({
-        'title': 'Question #{}. How I can to do smth?'.format(i),
-        'body': 'Badges are numerical indicators of how many items are associated with a link. Use the .badge class within span elements to create badges.',
-        'nickname': "nickname{}".format(i),
+        'title': 'Why i cant jump on 10 meters? (Question # {})'.format(i),
+        'body': 'Actually the question has already been set',
+        'nickname': "Nickname{}".format(i),
         'id': i,
     })
-
 
 def getpagintator(parametr, request, nums_on_list):
     paginator = Paginator(parametr, nums_on_list)
@@ -50,16 +47,16 @@ def getpagintator(parametr, request, nums_on_list):
         questions1 = paginator.page(paginator.num_pages)
     return questions1
 
+def index(request, page):
+    questions1 = getpagintator(questions, request, 4)
+    return render_to_response('index.html', {"questions1": questions1})
+    # return render(request, 'index.html', {"questions": questions[:5]}, page)
+    
 def base(request):
     return render(request, "base.html")
 
 def ask(request):
     return render(request, 'ask.html')
-    
-def index(request, page):
-    questions1 = getpagintator(questions, request, 3)
-    return render_to_response('index.html', {"questions1": questions1})
-    # return render(request, 'index.html', {"questions": questions[:5]}, page)
 
 def question(request, question_id):
     context = RequestContext(request, {
@@ -85,7 +82,7 @@ def tag(request, htag, page):
         'hash_tag': htag,
         "n_page": page,
     })
-    questions1 = getpagintator(questions, request, 3)
+    questions1 = getpagintator(questions, request, 4)
     return render(request, 'tag.html', {'questions1': questions1, "context": context})
 
 
