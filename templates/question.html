@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+{%extends 'base.html'%}
+{% load staticfiles %}
+{%block content%}
+<div class="col-xs-9 col-sm-9">
+  <div class="row row-offcanvas">
+    <div class="col-xs-10 col-sm-10">
+      <h2 style="margin-top: 0px;">Why i can't jump on 10 meters? (Вопрос № {{context.que_id}})</</h2>
+    </div>
+    <div class="col-xs-2 col-sm-2">
+      <div class="row-offcanvas">
+        <div align="right">
+          <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success">Ask!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="row row-offcanvas">
+      <div class="col-xs-1 col-sm-1" style="padding:0px; width:auto">
+        <div><a style="font-size: 32px; color:grey" href="#" class="glyphicon glyphicon-triangle-top"></a></div>
+        <div align=center style="font-size: 18px; color:grey" >23</div>
+        <div><a style="font-size: 32px; color:grey" href="#" class="glyphicon glyphicon-triangle-bottom"></a></div>  
+      </div>
+      <div class="col-xs-2 col-sm-2">
+        <div align=center width="115" height="115">
+          <img src="{% static 'default_ava.jpg' %}" width="115" height="115">
+        </div>
+      </div>
+    <div class="col-xs-9 col-sm-9" style="font-size: 16px;">
+        <p>I've been trying to create a static library (.lib) with some DSP classes of mine. The DSP classes use the Eigen library which in turn utilizes MKL and IPP.
+        <br><br>
+        My issue is that I can't find a way to create this static library that will be a "standalone", i.e. if I create an application project, I will only need to include my own DSP library .lib file and it's header file(s).
+        <br><br>
+        When I try to create a static library out of the static versions of IPP and MKL I get a LNK1189 error that the number of allowed symbols are exceeded.
+        So far the only thing that works is using the dynamic versions of IPP and MKL and of course adding the redist paths of IPP and MKL to the Windows environment path variable. Sadly, that cancels the whole point of using one set of header files (my own, that reference ipp headers) and my .lib file.
+        <br><br>
+        I will be more than happy to elaborate if it is not clear what I am trying to do.
+        <br><br>
+        Any help would be really appreciated.</p>
+    <i class="glyphicon glyphicon-user"></i> by <a href="#">Develiark</a>
+    | <i class="glyphicon glyphicon-calendar"></i> Feb 27th, 2016
+    | <i class="glyphicon glyphicon-tags"></i> Tags : 
+        <a href="#"><span class="label label-info btn-inverse">Life</span></a>
+        <a href="#"><span class="label label-info btn-inverse">Universe</span></a>
+        <a href="#"><span class="label label-info btn-inverse">Science</span></a>
+    </div>
+  </div>
+  <div>
+    <h3>2 Answers</h3>
+    <hr> 
+  </div>
+  <div>
+    <div class=" row-fluid">
+      <div class="col-xs-1 col-sm-1" style="padding:0px; width:auto">
+        <div><a style="font-size: 26px; color:grey" href="#" class="glyphicon glyphicon-triangle-top"></a></div>
+        <div align=center style="font-size: 16px; color:grey" >19</div>
+        <div><a style="font-size: 26px; color:grey" href="#" class="glyphicon glyphicon-triangle-bottom"></a></div>  
+      </div>
+      <div class="col-xs-1 col-sm-1">
+        <div align=center width="74" height="74">
+          <img src="{% static 'default_ava3.png' %}" width="74" height="74">
+        </div>
+      </div>
+      <div class="col-xs-10 col-sm-10" style="padding-left: 35px; padding-top: 0px">
+        <p style="font-size: 15px;">
+        Block coverage (or "basic block coverage") and branch coverage are two different measures of code coverage. Block coverage counts blocks bounded by branches. Branch coverage counts the actual branches. This code fragment puts "I'm block 1" if condition   puts "I'm block 2" else  puts "I'm block 3" end puts "I'm block 4" has four blocks but only two branches, the two sides of the if/else. If this code is tested by only one test and condition is true in that test, blocks 1, 2 and 4 will be covered, so block coverage will be 75% the true branch of the if will be covered but not the false branch of the if, so branch coverage will be 100%cpp</p>
+        <i class="glyphicon glyphicon-user"></i> by <a href="#">Unknown</a>
+        |  <i class="glyphicon glyphicon-calendar"></i> Feb 28th, 2016
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+            Correct!
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br style="clear:both" />
+  <hr> 
+         
+  <div>
+    <div class=" row-fluid">
+      <div class="col-xs-1 col-sm-1" style="padding:0px; width:auto">
+        <div><a style="font-size: 26px; color:grey" href="#" class="glyphicon glyphicon-triangle-top"></a></div>
+        <div align=center style="font-size: 16px; color:grey" >3</div>
+        <div><a style="font-size: 26px; color:grey" href="#" class="glyphicon glyphicon-triangle-bottom"></a></div>  
+      </div>
+      <div class="col-xs-1 col-sm-1">
+        <div align=center width="74" height="74">
+          <img src="{% static 'default_ava2.png' %}" width="74" height="74">
+        </div>
+      </div>
+      <div class="col-xs-10 col-sm-10" style="padding-left: 35px; padding-top: 0px">
+        <p style="font-size: 15px;">
+        Up vote 1 down vote accepted It turns out that the most recent gcovr version (3.1-prereleas) changes the way Cobertura reports are generated in that it the class tag's filename attribute contains the source code file's name only and not it's project root-relative path.
+        <br><br>
+        The problem can be solved either by using an earlier gcovr version (I tried 2.4 and it worked) or by manually modifying the report to make it compatible with the C++ plugin's Cobertura parser again.</p>
+        <i class="glyphicon glyphicon-user"></i> by <a href="#">Unknown</a>
+        |  <i class="glyphicon glyphicon-calendar"></i> Feb 29th, 2016
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+            Correct!
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <br style="clear:both" />
+  <br> 
+  <textarea class="form-control" rows="3" placeholder="Your answer..." style="margin-top: 10px"></textarea>
+  <br>
+  <div align="right">
+    <button type="button" class="btn btn-warning">Post answer</button>
+  </div>
+  <br>
+</div>
+{%endblock%}
+

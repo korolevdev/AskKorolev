@@ -1,0 +1,53 @@
+{%extends 'base.html'%}
+{% load staticfiles %}
+{%block content%}
+
+<div class="col-md-9">
+    <div class="row-md-1">
+        {%block cont_title%}<h2> Hashtag: #{{context.hash_tag}}</h2>{%endblock%}
+        {% for question in questions1 %}
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#"><img src="{% static '/avatar2.png' %}" alt="Аватар" class="img-circle"></a>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">{{question.title}}
+                            <small> {{question.nickname}}</small>
+                        </h3>
+                        Badges are numerical indicators of how many items are associated with a link.
+                        Use the .badge class within span elements to create badges.
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button type="button" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+
+                </button>
+                <button type="button" class="btn btn-success">
+                    <span class="badge">{%block likes%}11{%endblock%}</span>
+                </button>
+
+                <button type="button" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-thumbs-down"></span>
+
+                </button>
+                <button class="btn btn-default" type="button"
+                        onclick="location.href = '{%url 'question' question.id%}'">
+                    Комментарии <span class="badge">1</span>
+                </button>
+                <div class="pull-right hidden-xs">
+                    <h4>Тэги:
+                        <small>#имя_тега</small>
+                    </h4>
+                </div>
+            </div>
+        </div>
+        {% endfor%}
+        {% include 'pagination.html' with paginated=questions1 %}
+    </div>
+</div>
+{%endblock%}
+

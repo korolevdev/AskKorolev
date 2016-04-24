@@ -22,4 +22,12 @@ from ask_app import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^params/', views.get_post_params, name="params"),
+    url(r'^base/?', views.base, name="base"),
+    url(r'^(/)?(?P<page>\d+)?$', views.index, name='/'),
+    url(r'^login/?', views.login, name='login'),
+    url(r'^signup/?', views.signup, name='signup'),
+    url(r'^question/(?P<question_id>[0-9]+)?/?$', views.question, name='question'),
+    url(r'^hot/?', views.hot, name='hot'),
+    url(r'^ask/?', views.ask, name='ask'),
+    url(r'^tag/(?P<htag>[a-zA-Z0-9]+)/(?P<page>[0-9]+)?/?$', views.tag, name='tag'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
