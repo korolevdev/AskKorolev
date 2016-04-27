@@ -25,12 +25,14 @@ SECRET_KEY = '#415p_t8^-=-zwbsiox-m&q7$wdep-rntx+6uumz@ns&tc25b6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'ask_app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,14 +56,34 @@ ROOT_URLCONF = 'ask_korolev.urls'
 
 WSGI_APPLICATION = 'ask_korolev.wsgi.application'
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
+            ],
+        },
+    },
+]
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ask_korolev',
+        'USER': 'root',
+        'PASSWORD': 'ask_korolev',
     }
 }
 
@@ -104,8 +126,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/static/'
-
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'templates'),
-)
 

@@ -1,10 +1,17 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import RequestContext
 from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response
+from ask_app.models import Question, Answer, QuestionLike, AnswerLike, Tag
 
+def error_not_found(request):
+    return render(request, '404.html')
+
+def error_server(request):
+    return render(request, '500.html')
+    
 @csrf_exempt
 def get_post_params(request):
     result = ['<p>Django!</p>']
@@ -27,15 +34,6 @@ def get_post_params(request):
 
     return HttpResponse('<br>'.join(result))
 
-questions = []
-for i in xrange(30):
-    questions.append({
-        'title': 'Why i cant jump on 10 meters? (Question # {})'.format(i),
-        'body': 'Actually the question has already been set',
-        'nickname': "Nickname{}".format(i),
-        'id': i,
-    })
-
 def getpagintator(parametr, request, nums_on_list):
     paginator = Paginator(parametr, nums_on_list)
     page = request.GET.get('page')
@@ -47,44 +45,49 @@ def getpagintator(parametr, request, nums_on_list):
         questions1 = paginator.page(paginator.num_pages)
     return questions1
 
-def index(request, page):
-    questions1 = getpagintator(questions, request, 4)
-    return render_to_response('index.html', {"questions1": questions1})
-    # return render(request, 'index.html', {"questions": questions[:5]}, page)
+def new(request, page):
+    questions_query = Question.objects.list_new()
+
+    questions = getpagintator(questions_query, request, 4)
+    return render(request, 'index.html', {'questions': questions})
     
+def hot(request):
+    questions_query = Question.objects.list_hot()
+
+    questions = getpagintator(questions_query, request, 4)
+    return render(request, 'hot.html', {'questions': questions})
+
+def tag(request, htag, page):
+    context = RequestContext(request, {
+        'hash_tag': htag,
+    })
+
+    try:
+        tag = Tag.objects.get_by_title(htag)
+    except Tag.DoesNotExist:
+        raise Http404()
+
+    questions_query = Question.objects.list_tag(tag)
+
+    questions = getpagintator(questions_query, request, 4)
+    return render(request, 'tag.html', {'questions': questions, "context": context})
+
+def question(request, question_id):
+    try:
+        ques = Question.objects.get_single(int(question_id))
+    except Question.DoesNotExist:
+        raise Http404()
+
+    return render(request, 'question.html', {'question': ques})
+
 def base(request):
     return render(request, "base.html")
 
 def ask(request):
     return render(request, 'ask.html')
 
-def question(request, question_id):
-    context = RequestContext(request, {
-        'que_id': question_id,
-    })
-    return render(request, 'question.html', {'questions': questions, "context": context})
-
-def hot(request):
-    questions1 = getpagintator(questions, request, 3)
-    return render(request, 'hot.html', {'questions1': questions1,})
-
-def error_not_found(request):
-    return render(request, '404.html')
-
-def error_server(request):
-    return render(request, '500.html')
-
 def login(request):
     return render(request, 'login.html')
-
-def tag(request, htag, page):
-    context = RequestContext(request, {
-        'hash_tag': htag,
-        "n_page": page,
-    })
-    questions1 = getpagintator(questions, request, 4)
-    return render(request, 'tag.html', {'questions1': questions1, "context": context})
-
 
 def signup(request):
     return render(request, 'signup.html')
