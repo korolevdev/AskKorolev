@@ -27,7 +27,6 @@ def get_post_params(request):
     if request.method == 'GET':
         if request.GET.urlencode() != '':
             result.append('Get data:')
-            #result.append(request.GET.urlencode())
             for key, value in request.GET.items():
                 keyvalue=key+" = "+value
                 result.append(keyvalue)
