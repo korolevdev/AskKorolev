@@ -1,10 +1,17 @@
+from django.contrib import auth
 from django.shortcuts import render
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import RequestContext
 from django.views.decorators.csrf import csrf_exempt
+from django.core import validators
+from django.forms.models import model_to_dict
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response
+
+from ask_app import helpers
+from ask_app.forms import LoginForm, SignupForm
 from ask_app.models import Question, Answer, QuestionLike, AnswerLike, Tag
+from ask_app.decorators import need_login, need_login_ajax
 
 def error_not_found(request):
     return render(request, '404.html')
@@ -27,6 +34,7 @@ def get_post_params(request):
     if request.method == 'GET':
         if request.GET.urlencode() != '':
             result.append('Get data:')
+            #result.append(request.GET.urlencode())
             for key, value in request.GET.items():
                 keyvalue=key+" = "+value
                 result.append(keyvalue)
@@ -79,17 +87,52 @@ def question(request, question_id):
 
     return render(request, 'question.html', {'question': ques})
 
+@need_login
+def logout(request):
+    redirect = request.GET.get('continue', '/')
+    auth.logout(request)
+    return HttpResponseRedirect(redirect)
+
+def form_login(request):
+    redirect = request.GET.get('continue', '/')
+    if request.user.is_authenticated():
+        return HttpResponseRedirect(redirect)
+
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+
+        if form.is_valid():
+            auth.login(request, form.cleaned_data['user'])
+            return HttpResponseRedirect(redirect)
+    else:
+        form = LoginForm()
+
+    return render(request, 'login.html', {
+            'form': form,
+        })
+
+def form_signup(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/')
+
+    if request.method == "POST":
+        form = SignupForm(request.POST, request.FILES)
+        if form.is_valid():
+            user = form.save()
+            auth.login(request, user)
+            return HttpResponseRedirect('/')
+    else:
+        form = SignupForm()
+
+    return render(request, 'signup.html', {
+            'form': form,
+        })
+
 def base(request):
     return render(request, "base.html")
 
 def ask(request):
     return render(request, 'ask.html')
-
-def login(request):
-    return render(request, 'login.html')
-
-def signup(request):
-    return render(request, 'signup.html')
 
 def error(request):
     return render(request, '404page.html')

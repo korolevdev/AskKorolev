@@ -4,16 +4,6 @@
 
 {% block title %}<title>AskKorolev - New question</title>{% endblock %}
 
-{%block user_bar%}
-    <ul style="margin: 5px" class="nav navbar-right">
-        <a class="nav" href="#">Nickname <a href="{% url 'login' %}" class="navbar-link">log out</a> </a>
-    </ul>
-        <ul class="nav navbar-right">
-        <div style="margin: 7px">
-            <img src="{% static 'default_ava.jpg' %}" width="36" height="36">
-        </div>
-    </ul>
-{% endblock%}
 <label for="inputTitle" class="col-sm-2 control-label">Title</label>
   <div class="col-sm-10">
     <input type="text" required class="form-control" id="inputTitle" placeholder="Type your title here...">

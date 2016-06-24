@@ -21,6 +21,23 @@
 	padding-left: 5;
 }
 
+.title-question {
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
+    font-size: 22px;  
+    margin-top: 0px;
+    margin-bottom: 5px
+}
+
+.body-question {
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
+    font-size: 12px;  
+    margin-bottom: 0px
+}
+
 .error-template {padding: 40px 15px;text-align: center;}
 .error-actions {margin-top:15px;margin-bottom:15px;}
 .error-actions .btn { margin-right:10px; }

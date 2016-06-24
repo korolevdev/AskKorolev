@@ -35,14 +35,20 @@
             <li><a href="{% url '/' %}">Contact</a></li>
           </ul>
           {%block user_bar%}
+          {%if request.user.is_authenticated  %}
           <ul style="margin: 5px" class="nav navbar-right">
-            <a class="nav" href="#">Nickname <a href="{% url 'login' %}" class="navbar-link">log out</a> </a>
+            <a class="nav" href="#">{{ request.user.last_name }} {{ request.user.first_name }} <a href="{% url 'logout' %}?continue={{ request.path }}" class="navbar-link">log out</a> </a>
           </ul>
           <ul class="nav navbar-right">
             <div style="margin: 7px">
                 <img src="{% static 'default_ava.jpg' %}" width="36" height="36">
             </div>
           </ul>
+          {% else %}
+          <ul style="margin: 5px" class="nav navbar-right">
+              <a class="nav" href="{% url 'login' %}">Log in <a href="{% url 'signup' %}">Register</a> </a>
+          </ul>
+          {% endif %}
           {% endblock%}
         </div><!--/.nav-collapse -->
       </div>

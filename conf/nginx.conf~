@@ -36,7 +36,7 @@ http {
             proxy_pass http://django;
         }
 
-		proxy_cache all;
+        proxy_cache ask_korolev_cache;
 
         location ^~ /uploads/ {
             alias $root/uploads/;
