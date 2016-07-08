@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.http import HttpResponse, Http404
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
